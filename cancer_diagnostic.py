@@ -2,6 +2,8 @@ import csv
 import math
 import operator
 import statistics
+from statistics import multimode
+import random
 
 
 def load_from_csv(file_path: str) -> list:
@@ -164,7 +166,9 @@ def get_mode(k_nearest_labels: list) -> int:
         mode of k_nearest_labels
     """
     k_nearest_labels = [j for i in k_nearest_labels for j in i]
-    return statistics.mode(k_nearest_labels)
+    k_nearest_labels = multimode(k_nearest_labels)
+    return random.choice(k_nearest_labels)
+    # return statistics.mode(k_nearest_labels)
 
 
 def classify(standardised_data: list,
